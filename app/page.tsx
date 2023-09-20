@@ -6,9 +6,7 @@ import RecentAudios from "@/components/RecentAudios";
 import { useState } from "react";
 
 export default function Home() {
-  const [audios, setAudios] = useState<string[]>([
-    "/audio/even-dumber-awful-song-from-hell.mp3",
-  ]);
+  const [audios, setAudios] = useState<string[]>([]);
 
   function addToAudiosList(audioUrl: string) {
     setAudios([...audios, audioUrl]);
