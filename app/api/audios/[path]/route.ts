@@ -1,4 +1,4 @@
-import { Stats, createReadStream } from "fs";
+import { createReadStream, unlinkSync } from "fs";
 import { stat } from "fs/promises";
 import { NextResponse } from "next/server";
 import { resolve } from "path";
@@ -15,16 +15,34 @@ export async function GET(_: never, { params }: RequestPathParam) {
 
   const filePath = resolve("audios", `${path}.mp3`);
 
-  const stats: Stats = await stat(filePath);
-  const data: ReadableStream<Uint8Array> = streamFile(filePath);
+  try {
+    const stats = await stat(filePath);
+    const data: ReadableStream<Uint8Array> = streamFile(filePath);
 
-  return new NextResponse(data, {
-    status: 200,
-    headers: new Headers({
-      "content-type": "audio/mp3",
-      "content-length": stats.size + "",
-    }),
-  });
+    return new NextResponse(data, {
+      status: 200,
+      headers: new Headers({
+        "content-type": "audio/mp3",
+        "content-length": `${stats.size}`,
+      }),
+    });
+  } catch (e: any) {
+    return NextResponse.json({ message: "File not found" }, { status: 404 });
+  }
+}
+
+export async function DELETE(_: never, { params }: RequestPathParam) {
+  const { path } = params;
+
+  const filePath = resolve("audios", `${path}.mp3`);
+
+  try {
+    unlinkSync(filePath);
+  } catch (e: any) {
+    return NextResponse.json({ message: "File not found" }, { status: 404 });
+  }
+
+  return NextResponse.json({ message: "File deleted successfully" });
 }
 
 // https://www.reddit.com/r/nextjs/comments/13toeob/nextjs_response_with_a_stream/?rdt=55245
