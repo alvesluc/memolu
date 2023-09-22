@@ -23,9 +23,9 @@ export default function AudioRecorder() {
           setPermission(true);
           startRecording();
         });
-      } catch (err: any) {
+      } catch (e: any) {
         setPermission(false);
-        alert(err);
+        alert(e);
       }
     }
   }
