@@ -82,6 +82,7 @@ export default function NewAudio() {
           type="file"
           className="hidden"
           multiple={true}
+          accept="audio/mp3, audio/mpeg"
           onChange={handleSelectedFiles}
         />
       </label>
