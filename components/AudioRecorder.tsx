@@ -87,7 +87,7 @@ export default function AudioRecorder() {
   async function uploadAudio(audioFile: File) {
     try {
       const formData = new FormData();
-      formData.set("file", audioFile);
+      formData.set("files", audioFile);
 
       await fetch("/api/audios/", {
         method: "POST",
@@ -108,7 +108,7 @@ export default function AudioRecorder() {
       {canRecord && (
         <button
           type="button"
-          className="text-sm text-gray-900 bg-white border py-2 px-4 rounded hover:border-black"
+          className="text-sm text-gray-900 bg-white border py-2 px-4 rounded hover:border-black transition-all"
           onClick={!permission ? getMicrophonePermission : startRecording}
         >
           <div className="flex gap-2 items-center">
@@ -120,7 +120,7 @@ export default function AudioRecorder() {
       {recordingStatus === "recording" && (
         <button
           type="button"
-          className="text-sm text-gray-900 bg-white border py-2 px-4 rounded hover:border-black"
+          className="text-sm text-gray-900 bg-white border py-2 px-4 rounded hover:border-black transition-all"
           onClick={stopRecording}
         >
           <div className="flex gap-2 items-center">

@@ -89,14 +89,14 @@ export default function RecentAudios() {
                           audio.loop
                             ? "border border-black bg-green-400"
                             : "border bg-white"
-                        } py-2 px-4 rounded hover:border-black`}
+                        } py-2 px-4 rounded hover:border-black transition-all`}
                         onClick={() => toggleAudioLoop(audio.name)}
                       >
                         <span>Loop</span>
                         <Repeat size={14} />
                       </button>
                       <a
-                        className="text-center text-sm w-full text-gray-900 bg-white border py-2 px-4 rounded hover:border-black sm:w-auto"
+                        className="text-center text-sm w-full text-gray-900 bg-white border py-2 px-4 rounded hover:border-black sm:w-auto transition-all"
                         href={audio.audioUrl}
                         download
                       >
