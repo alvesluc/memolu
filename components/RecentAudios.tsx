@@ -32,21 +32,31 @@ export default function RecentAudios() {
       .then((audio) => audio.blob())
       .then((blob) => {
         const audioUrl = URL.createObjectURL(blob);
+        const audioPath = handleAudioPath(path);
 
         setAudios((prev) => {
-          return [...prev, { name: path, audioUrl, loop: false }];
+          return [...prev, { path, name: audioPath, audioUrl, loop: false }];
         });
       });
   }
 
+  function handleAudioPath(path: string): string {
+    const dateSeparator = path.lastIndexOf("_");
+
+    if (dateSeparator === -1) {
+      return path;
+    } else {
+      return path.substring(0, dateSeparator);
+    }
+  }
+
   return (
     <div>
-      <h2 className="text-lg font-semibold mb-2">Recent voice notes</h2>
       <ul role="list" className="flex w-full flex-col gap-2">
-        {isLoading ? (
-          <span>Loading audios...</span>
-        ) : (
+        {isLoading ? <span>Loading audios...</span> : null}
+        {audios.length != 0 && (
           <>
+            <h2 className="text-lg font-semibold mb-2">Recent voice notes</h2>
             {audios.toReversed().map((audio) => {
               return <AudioTile key={audio.audioUrl} audio={audio} />;
             })}
