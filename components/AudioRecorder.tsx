@@ -87,7 +87,7 @@ export default function AudioRecorder() {
   async function uploadAudio(audioFile: File) {
     try {
       const formData = new FormData();
-      formData.set("file", audioFile);
+      formData.set("files", audioFile);
 
       await fetch("/api/audios/", {
         method: "POST",
