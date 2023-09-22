@@ -6,7 +6,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Memolu",
-  description: "Simple voice memo application, created for recording and looping audios.",
+  description:
+    "Simple voice memo application, created for recording and looping audios.",
 };
 
 export default function RootLayout({

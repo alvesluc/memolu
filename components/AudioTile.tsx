@@ -1,33 +1,68 @@
 import { Audio } from "@/types/Audio";
 import { useState } from "react";
-import { Repeat, Trash2 } from "react-feather";
+import { Edit3, Repeat, Trash2 } from "react-feather";
 
 type AudioTileProps = {
   audio: Audio;
 };
 
 export default function AudioTile({ audio }: AudioTileProps) {
-  const { name, audioUrl, loop } = audio;
+  const { path, name, audioUrl, loop } = audio;
+
+  const [audioPath, setAudioPath] = useState(path);
+  const [audioName, setAudioName] = useState(name);
   const [isLooping, setIsLooping] = useState(loop);
 
   function toggleAudioLoop() {
     setIsLooping(!isLooping);
   }
 
-  function handleDelete() {
-    const confirmDelete = prompt(`Type 'confirm' and hit OK to delete ${name}`);
+  function handleRename() {
+    const newName = prompt(`Rename "${audioName}":`, audioName);
 
-    if (confirmDelete === null || confirmDelete == "") {
+    if (newName === null || newName === "" || newName === audioName) {
+      return;
+    }
+
+    return renameAudio(newName);
+  }
+
+  async function renameAudio(newName: string) {
+    fetch(`/api/audios/${audioPath}`, {
+      method: "PATCH",
+      body: JSON.stringify({
+        newFileName: newName,
+      }),
+    }).then(async (response) => {
+      if (response.status === 200) {
+        setAudioName(newName);
+
+        const data = await response.json();
+        setAudioPath(data.newPath);
+      } else {
+        alert(
+          "An unexpected error occurred and the audio couldn't be renamed!",
+        );
+      }
+    });
+  }
+
+  function handleDelete() {
+    const confirmDelete = prompt(
+      `Type 'confirm' and hit OK to delete ${audioName}`,
+    );
+
+    if (confirmDelete === null || confirmDelete === "") {
       return;
     }
 
     if (confirmDelete.toLowerCase() === "confirm") {
-      deleteAudio();
+      return deleteAudio();
     }
   }
 
   async function deleteAudio() {
-    fetch(`/api/audios/${name}`, {
+    fetch(`/api/audios/${audioPath}`, {
       method: "DELETE",
     }).then((response) => {
       if (response.status === 200) {
@@ -45,8 +80,14 @@ export default function AudioTile({ audio }: AudioTileProps) {
       <div className="flex min-w-0 gap-x-4">
         <div className="flex flex-col gap-2 min-w-0 flex-auto ">
           <div className="flex flex-row items-center justify-between">
-            <p className="text-sm w-full font-semibold leading-6 text-gray-900 overflow-ellipsis overflow-hidden">
-              {name}
+            <button
+              className="text-center text-sm text-gray-900 bg-white border py-2 px-2 rounded hover:border-black sm:w-auto transition-all"
+              onClick={handleRename}
+            >
+              <Edit3 size={16} />
+            </button>
+            <p className="text-sm pl-2 w-full font-semibold leading-6 text-gray-900 overflow-ellipsis overflow-hidden">
+              {audioName}
             </p>
             <button
               className="text-center text-sm text-gray-900 bg-white border py-2 px-2 rounded hover:border-black sm:w-auto transition-all sm:hidden"
@@ -72,9 +113,9 @@ export default function AudioTile({ audio }: AudioTileProps) {
           <a
             className="text-center text-sm w-full text-gray-900 bg-white border py-2 px-4 rounded hover:border-black sm:w-auto transition-all"
             href={audioUrl}
-            download
+            download={audioPath}
           >
-            <span className="font-medium">Baixar áudio</span>
+            <span className="font-medium">Download</span>
           </a>
           <button
             className="text-center text-sm text-gray-900 bg-white border py-2 px-2 rounded hover:border-black sm:w-auto transition-all hidden sm:inline-block"
