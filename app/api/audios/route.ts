@@ -5,28 +5,33 @@ import { resolve } from "path";
 
 export async function POST(req: NextRequest) {
   const data = await req.formData();
-  const file: File | null = data.get("file") as unknown as File;
+  const files: File[] | null = data.getAll("files") as unknown as File[];
 
-  if (!file) {
+  if (!files) {
     return NextResponse.json(
       { message: "The audio file must be provided" },
       { status: 422 },
     );
   }
 
-  if (file.type != "audio/mp3" && file.type != "audio/mpeg") {
-    return NextResponse.json(
-      { message: "The audio file must be an .mp3" },
-      { status: 422 },
-    );
-  }
+  files.forEach(async (file) => {
+    if (file.type !== "audio/mp3" && file.type !== "audio/mpeg") {
+      return NextResponse.json(
+        { message: "Some file didn't have the expected type" },
+        { status: 422 },
+      );
+    }
 
-  const bytes = await file.arrayBuffer();
-  const buffer = Buffer.from(bytes);
+    const bytes = await file.arrayBuffer();
+    const buffer = Buffer.from(bytes);
 
-  await writeFile(resolve("audios", file.name), buffer);
+    await writeFile(resolve("audios", file.name), buffer);
+  });
 
-  return NextResponse.json({ message: "Audio saved successfully!" });
+  return NextResponse.json(
+    { message: "Upload successfully!" },
+    { status: 201 },
+  );
 }
 
 export async function GET() {
