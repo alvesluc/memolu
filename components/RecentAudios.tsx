@@ -24,7 +24,7 @@ export default function RecentAudios() {
       })
       .catch((error) => {
         setIsLoading(false);
-        console.error("Error fetching data:", error);
+        console.error("Error fetching data: ", error);
       });
   }, []);
 
