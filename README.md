@@ -1,5 +1,7 @@
 # Memolu
 
+![image](https://github.com/alvesluc/memolu/assets/42820357/e6d009ae-f73a-434d-a6a7-0c46b281f640)
+
 This is a minimalist audio recorder application. I've created out of curiosity after a friend asked if there was a way to easily loop an audio that herself recorded on her phone.
 
 I've tried two things before diving into building this, these being:
@@ -9,7 +11,9 @@ I've tried two things before diving into building this, these being:
 
 The Voice Memos app has a pretty good set of features, and it if had an looping option it would be enough to satisfy her needs. I like the stopwatch like interface while the audio is being recorded, and I'm thinking of implementing that as a feature, for UX purposes.
 
-The Spotify's case is something else, although it has an fully fletched audio player, the hassle that is to get the file to the Spotify's folder makes some people frustrated. A suggestion that I have is to add the Spotify application to the list of apps that handle the file type, as shown in the screenshot below:
+The Spotify's case is something else, although it has an fully fledged audio player, the hassle that is to get the file to the Spotify's folder makes some people frustrated. A suggestion that I have is to add the Spotify application to the list of apps that handle the file type, as shown in the screenshot below:
+
+![image](https://github.com/alvesluc/memolu/assets/42820357/a027124e-8d9d-406c-a993-298cd09c8177)
 
 ## Features
 
@@ -18,7 +22,9 @@ The Spotify's case is something else, although it has an fully fletched audio pl
 - Rename the audio.
 - Toggleable audio loop.
 - Download the audio.
-- Delete the audio. 
+- Delete the audio.
+
+---
 
 ### Why Next.js?
 
