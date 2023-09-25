@@ -1,8 +1,50 @@
+# Memolu
+
+This is a minimalist audio recorder application. I've created out of curiosity after a friend asked if there was a way to easily loop an audio that herself recorded on her phone.
+
+I've tried two things before diving into building this, these being:
+
+- The default iOS Voice Memos app.
+- The Spotify's Local Files feature.
+
+The Voice Memos app has a pretty good set of features, and it if had an looping option it would be enough to satisfy her needs. I like the stopwatch like interface while the audio is being recorded, and I'm thinking of implementing that as a feature, for UX purposes.
+
+The Spotify's case is something else, although it has an fully fletched audio player, the hassle that is to get the file to the Spotify's folder makes some people frustrated. A suggestion that I have is to add the Spotify application to the list of apps that handle the file type, as shown in the screenshot below:
+
+## Features
+
+- Upload existing `.mp3` files.
+- Record a new audio.
+- Rename the audio.
+- Toggleable audio loop.
+- Download the audio.
+- Delete the audio. 
+
+### Why Next.js?
+
+As I didn't want to create an app with an object storage (S3, GCS, Azure, etc...) neither wanted to have multiple repositories (one for the API, and one for the UI), Next.js just felt like a good choice as a full-stack framework, as I would have access to Node's `fs` API for handling files and React's JSX to easily build the UI.
+
+### You have experience with Flutter, why not a mobile app?
+
+The main reason is that even though it would be easier for me to build a mobile app, for distance reasons, I wouldn't had a way to installing it on her phone.
+
+---
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
 
-First, run the development server:
+First, install the dependencies with whatever packager manager you like:
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+```
+
+Then run the development server:
 
 ```bash
 npm run dev
@@ -12,23 +54,4 @@ yarn dev
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+After that, you just need to open [http://localhost:3000](http://localhost:3000) with your browser to see the app running.
