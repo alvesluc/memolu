@@ -73,7 +73,7 @@ export default function NewAudio() {
       >
         <div className="flex flex-col items-center justify-center p-4">
           <p className="mb-2 text-center text-sm text-gray-500">
-            You can click to upload, drag and drop
+            You can click to upload or drag and drop your audio files
           </p>
           <p className="mb-2 text-xs text-gray-500">Valid file types: MP3</p>
         </div>
