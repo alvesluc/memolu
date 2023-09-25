@@ -56,7 +56,7 @@ export default function AudioTile({ audio }: AudioTileProps) {
       return;
     }
 
-    if (confirmDelete.toLowerCase() === "confirm") {
+    if (confirmDelete.trim().toLowerCase() === "confirm") {
       return deleteAudio();
     }
   }
@@ -78,7 +78,7 @@ export default function AudioTile({ audio }: AudioTileProps) {
   return (
     <li className="flex flex-col justify-between gap-x-6 gap-y-2 p-4 bg-gray-100 sm:flex-row">
       <div className="flex min-w-0 gap-x-4">
-        <div className="flex flex-col gap-2 min-w-0 flex-auto ">
+        <div className="flex flex-col gap-4 min-w-0 flex-auto ">
           <div className="flex flex-row items-center justify-between">
             <button
               className="text-center text-sm text-gray-900 bg-white border py-2 px-2 rounded hover:border-black sm:w-auto transition-all"
