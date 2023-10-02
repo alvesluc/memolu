@@ -108,10 +108,10 @@ export default function AudioRecorder() {
       {canRecord && (
         <button
           type="button"
-          className="text-sm text-gray-900 bg-white border py-2 px-4 rounded hover:border-black transition-all"
+          className="rounded border bg-white px-4 py-2 text-sm text-gray-900 transition-all hover:border-black"
           onClick={!permission ? getMicrophonePermission : startRecording}
         >
-          <div className="flex gap-2 items-center">
+          <div className="flex items-center gap-2">
             <span>Record audio</span>
             <Mic size={14} />
           </div>
@@ -120,10 +120,10 @@ export default function AudioRecorder() {
       {recordingStatus === "recording" && (
         <button
           type="button"
-          className="text-sm text-gray-900 bg-white border py-2 px-4 rounded hover:border-black transition-all"
+          className="rounded border bg-white px-4 py-2 text-sm text-gray-900 transition-all hover:border-black"
           onClick={stopRecording}
         >
-          <div className="flex gap-2 items-center">
+          <div className="flex items-center gap-2">
             <span>Stop recording</span>
             <StopCircle size={16} color="red" />
           </div>

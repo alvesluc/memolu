@@ -56,7 +56,7 @@ export default function RecentAudios() {
         {isLoading ? <span>Loading audios...</span> : null}
         {audios.length != 0 && (
           <>
-            <h2 className="text-lg font-semibold mb-2">Recent voice notes</h2>
+            <h2 className="mb-2 text-lg font-semibold">Recent voice notes</h2>
             {audios.toReversed().map((audio) => {
               return <AudioTile key={audio.audioUrl} audio={audio} />;
             })}

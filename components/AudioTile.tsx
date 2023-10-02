@@ -76,21 +76,21 @@ export default function AudioTile({ audio }: AudioTileProps) {
   }
 
   return (
-    <li className="flex flex-col justify-between gap-x-6 gap-y-2 p-4 bg-gray-100 sm:flex-row">
+    <li className="flex flex-col justify-between gap-x-6 gap-y-2 bg-gray-100 p-4 sm:flex-row">
       <div className="flex min-w-0 gap-x-4">
-        <div className="flex flex-col gap-4 min-w-0 flex-auto ">
+        <div className="flex min-w-0 flex-auto flex-col gap-4 ">
           <div className="flex flex-row items-center justify-between">
             <button
-              className="text-center text-sm text-gray-900 bg-white border py-2 px-2 rounded hover:border-black sm:w-auto transition-all"
+              className="rounded border bg-white px-2 py-2 text-center text-sm text-gray-900 transition-all hover:border-black sm:w-auto"
               onClick={handleRename}
             >
               <Edit3 size={16} />
             </button>
-            <p className="text-sm pl-2 w-full font-semibold leading-6 text-gray-900 overflow-ellipsis overflow-hidden">
+            <p className="w-full overflow-hidden overflow-ellipsis pl-2 text-sm font-semibold leading-6 text-gray-900">
               {audioName}
             </p>
             <button
-              className="text-center text-sm text-gray-900 bg-white border py-2 px-2 rounded hover:border-black sm:w-auto transition-all sm:hidden"
+              className="rounded border bg-white px-2 py-2 text-center text-sm text-gray-900 transition-all hover:border-black sm:hidden sm:w-auto"
               onClick={handleDelete}
             >
               <Trash2 size={16} color="red" />
@@ -99,26 +99,26 @@ export default function AudioTile({ audio }: AudioTileProps) {
           <audio id="audioPlayer" loop={isLooping} src={audioUrl} controls />
         </div>
       </div>
-      <div className="flex flex-col gap-2 justify-center">
+      <div className="flex flex-col justify-center gap-2">
         <div className="flex flex-row gap-2">
           <button
-            className={`flex gap-2 items-center text-sm text-gray-900 ${
+            className={`flex items-center gap-2 text-sm text-gray-900 ${
               isLooping ? "border border-black bg-green-400" : "border bg-white"
-            } py-2 px-4 rounded hover:border-black transition-all`}
+            } rounded px-4 py-2 transition-all hover:border-black`}
             onClick={toggleAudioLoop}
           >
             <span>Loop</span>
             <Repeat size={14} />
           </button>
           <a
-            className="text-center text-sm w-full text-gray-900 bg-white border py-2 px-4 rounded hover:border-black sm:w-auto transition-all"
+            className="w-full rounded border bg-white px-4 py-2 text-center text-sm text-gray-900 transition-all hover:border-black sm:w-auto"
             href={audioUrl}
             download={audioPath}
           >
             <span className="font-medium">Download</span>
           </a>
           <button
-            className="text-center text-sm text-gray-900 bg-white border py-2 px-2 rounded hover:border-black sm:w-auto transition-all hidden sm:inline-block"
+            className="hidden rounded border bg-white px-2 py-2 text-center text-sm text-gray-900 transition-all hover:border-black sm:inline-block sm:w-auto"
             onClick={handleDelete}
           >
             <Trash2 size={16} color="red" />

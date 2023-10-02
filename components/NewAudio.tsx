@@ -63,12 +63,12 @@ export default function NewAudio() {
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
-      className="flex flex-col items-center justify-between w-full gap-2"
+      className="flex w-full flex-col items-center justify-between gap-2"
     >
       <label
         htmlFor="dropzone-file"
-        className={`flex flex-[1] flex-col items-center justify-center w-full h-32 border-2  border-dashed rounded-lg cursor-pointer transition-all duration-500 ${
-          dragIsOver ? "bg-white border-black" : "bg-gray-100 border-gray-300"
+        className={`flex h-32 w-full flex-[1] cursor-pointer flex-col items-center justify-center  rounded-lg border-2 border-dashed transition-all duration-500 ${
+          dragIsOver ? "border-black bg-white" : "border-gray-300 bg-gray-100"
         }`}
       >
         <div className="flex flex-col items-center justify-center p-4">
